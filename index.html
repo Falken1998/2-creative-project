@@ -21,7 +21,7 @@
         </div>
     </div>
     <div id="wrapper" class="section">
-        <div class="container">
+        <div class="container" id="searchbox">
             <div class="field is-grouped">
                 <p class="control is-expanded">
                     <input class="input" type="text" id="pokeSearchBarOne" placeholder="Enter Pokemon Name">
@@ -32,7 +32,35 @@
                     </a>
                 </p>
             </div>
-            <span class="is"></span>
+            <span class="help is-danger" id="txtHintOne"></span>
+        </div>
+        <div class="container">
+            <div class="section">
+                <div id="pokeCard" class="card" style="visibility: hidden;">
+                    <div class="card-header">
+                        <p class="card-header-title is-4" id="pokemonName"></p>
+                    </div>
+                    <div class="card-content">
+                        <div class="is-pulled-right mb-4" id="icon"></div>
+                        <div class="pokemon-info">
+                        
+                            <ul>
+                                <li id="height">Height: </li>
+                                <li id="weight">Weight: </li>
+                                <li id="type">Type: </li>
+                                <li>
+                                    <ul id="stats"></ul>
+                                </li>
+                                <li>
+                                    <ul id="abilities"></ul>
+                                </li>
+                            </ul>
+                            
+                        
+                          </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -45,6 +73,19 @@
             </p>
         </div>
     </footer>
+
 </body>
 
 </html>
+<script>
+    document.getElementById("pokeSearchBarOne").addEventListener("keyup", function (event) {
+        event.preventDefault();
+        getSuggestions('One')
+    });
+    document.getElementById("pokeSearchBarSubmitOne").addEventListener("click", function (event) {
+        value = document.getElementById("pokeSearchBarOne").value.toLowerCase()
+        event.preventDefault();
+        console.log("search button Clicked!!!")
+        getPokemonInfo(value, `https://pokeapi.co/api/v2/pokemon/${value}/`, 'One')
+    });
+</script>
